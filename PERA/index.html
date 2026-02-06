@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERA | Home</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">💰 PERA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero text-center text-light d-flex align-items-center">
+  <div class="container">
+    <h1 class="display-3 fw-bold">Take Control of Your Money</h1>
+    <p class="lead mt-3">Personal Expenses Recording Assistant that helps you track, save, and grow.</p>
+    <button class="btn btn-success btn-lg mt-4 px-4 py-2 shadow" onclick="showAlert()">Get Started</button>
+  </div>
+</header>
+
+<!-- Info Section -->
+<section class="container text-center py-5">
+  <h2 class="fw-bold mb-3">Track. Save. Control.</h2>
+  <p class="text-muted mb-5">PERA helps you manage income, expenses, and financial goals easily and efficiently.</p>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="feature-box p-4">
+        📊
+        <h5 class="mt-3 fw-semibold">Track Expenses</h5>
+        <p class="text-muted small">Monitor where your money goes in real time.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-box p-4">
+        💡
+        <h5 class="mt-3 fw-semibold">Smart Insights</h5>
+        <p class="text-muted small">Understand your spending habits.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-box p-4">
+        🎯
+        <h5 class="mt-3 fw-semibold">Reach Goals</h5>
+        <p class="text-muted small">Stay on track with savings targets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
