@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Financial Summary</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-summary">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item active" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <h1>Financial Summary</h1>
+                <p>Detailed analysis of your cash flow</p>
+            </div>
+            <div class="cards">
+                <div class="card" style="border-top: 4px solid #4db8ff;"><h3>Net Savings</h3><p class="amount">₱3,750</p></div>
+                <div class="card" style="border-top: 4px solid #4ade80;"><h3>Highest Income</h3><p class="amount">₱8,000</p></div>
+                <div class="card" style="border-top: 4px solid #f87171;"><h3>Top Expense</h3><p class="amount">₱1,500</p></div>
+            </div>
+            <div class="recent">
+                <h2>Category Breakdown</h2>
+                <table>
+                    <thead><tr><th>Category</th><th>Total Spent</th><th>Percentage</th></tr></thead>
+                    <tbody>
+                        <tr><td>Food & Dining</td><td>₱1,200</td><td>28%</td></tr>
+                        <tr><td>Utilities</td><td>₱1,500</td><td>35%</td></tr>
+                        <tr><td>Transport</td><td>₱500</td><td>12%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>
