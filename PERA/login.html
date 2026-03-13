@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Login</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body>
+
+<div class="page">
+    <div class="left">
+        <div class="brand">
+            <h1>💰 PERA</h1>
+            <p>Personal Expenses Recording Assistant</p>
+        </div>
+        <div class="features">
+            <div class="feature">📊 Track your expenses easily</div>
+            <div class="feature">🏦 Manage bank accounts</div>
+            <div class="feature">🔁 Recurring payments tracking</div>
+            <div class="feature">📈 Financial summaries</div>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="login-card">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Login to your account</p>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="loginEmail">Email Address *</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email">
+                    <small id="loginEmailError" class="error"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="loginPassword">Password *</label>
+                    <div class="password-box">
+                        <input type="password" id="loginPassword" placeholder="Enter password">
+                        <span id="toggleLoginPass" class="toggle-btn">Show</span>
+                    </div>
+                    <small id="loginPasswordError" class="error"></small>
+                </div>
+
+                <button type="submit" id="loginBtn" disabled>Log In</button>
+                <p id="loginFail" class="error-center"></p>
+            </form>
+
+            <div class="links">
+                <a href="#">Forgot Password?</a>
+                <p>Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="web.js"></script>
+</body>
+</html>
