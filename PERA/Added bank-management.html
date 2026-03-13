@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Bank Management</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-bank">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item active" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Bank Management</h1><p>Manage connected accounts</p></div>
+            <div class="cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="card" style="border-left: 5px solid #4db8ff;"><h3>Digital Wallet</h3><p>GCash</p><p class="amount">₱5,200</p></div>
+                <div class="card" style="border-left: 5px solid #4ade80;"><h3>Savings Account</h3><p>BDO Unibank</p><p class="amount">₱7,250</p></div>
+                <div class="card" style="border: 2px dashed rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                    <h3>+ Add Account</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>
