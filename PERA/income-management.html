@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Income Management</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-income">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item active" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Income Management</h1><p>Track your earnings</p></div>
+            <div class="form-container" style="max-width: 500px; margin: 0 auto;">
+                <form id="incomeForm">
+                    <div class="input-group"><label>Income Source</label><input type="text" placeholder="e.g. Salary, Freelance"></div>
+                    <div class="input-group"><label>Amount (₱)</label><input type="number" placeholder="0.00"></div>
+                    <button type="submit" style="background: #4ade80; color: #064e3b; width: 100%;">Add Income</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>
