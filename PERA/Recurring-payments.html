@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Recurring Payments</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-recurring">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item active" href="recurring-payments.html">🔁 Recurring Payments</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Recurring Payments</h1><p>Automated monthly tracking</p></div>
+            <div class="recent">
+                <table>
+                    <thead><tr><th>Subscription</th><th>Next Due Date</th><th>Amount</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Netflix</td><td>March 25</td><td>₱549</td><td><span class="status-pill">Active</span></td></tr>
+                        <tr><td>Internet Bill</td><td>April 01</td><td>₱1,500</td><td><span class="status-pill">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>
