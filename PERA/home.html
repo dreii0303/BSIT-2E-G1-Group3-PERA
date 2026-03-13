@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PERA Dashboard</title>
+<link rel="stylesheet" href="web.css">
+</head>
+
+<body>
+
+
+    
+
+<div class="dashboard">
+
+<div class="sidebar">
+
+    <div class="logo">
+        <h2>💰 PERA</h2>
+        <p>Expense Manager</p>
+    </div>
+
+    <nav class="menu">
+        <a class="menu-item" href="home.html">🏠 Home</a> 
+        <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+        <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+        <a class="menu-item" href="income-management.html">💰 Income Management</a>
+        <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+        <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+    </nav>
+    <div class="logout">
+        <button onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<div class="topbar">
+<h1>Dashboard</h1>
+<p>Welcome to your financial overview</p>
+</div>
+
+<div class="cards">
+    <div class="card card-balance">
+        <h3>💰 Total Balance</h3>
+        <p class="amount">₱12,450</p>
+    </div>
+
+    <div class="card card-income">
+        <h3>📈 Income This Month</h3>
+        <p class="amount">₱8,000</p>
+    </div>
+
+    <div class="card card-expense">
+        <h3>💸 Expenses This Month</h3>
+        <p class="amount">₱4,250</p>
+    </div>
+
+    <div class="card card-recurring">
+        <h3>🔁 Recurring Payments</h3>
+        <p class="amount">3 Active</p>
+    </div>
+</div>
+
+<div class="recent">
+    <h2>Recent Transactions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>March 10</td>
+                <td>Groceries</td>
+                <td class="expense-text">- ₱850</td>
+            </tr>
+            <tr>
+                <td>March 9</td>
+                <td>Salary</td>
+                <td class="income-text">+ ₱8,000</td>
+            </tr>
+            <tr>
+                <td>March 8</td>
+                <td>Internet Bill</td>
+                <td class="expense-text">- ₱1,500</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function logout(){
+window.location.href="login.html";
+}
+
+</script>
+
+</body>
+</html>
