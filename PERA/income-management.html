@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Income Management</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-income">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item active" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+                <a class="menu-item" href="settings.html">⚙️ Settings</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Income Management</h1><p>Track your earnings</p></div>
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Add Income</h2>
+                    <p>Record your earnings and watch your income grow.</p>
+                </div>
+                <form id="incomeForm">
+    <div class="input-group">
+        <label>Amount (₱)</label>
+        <input type="number" id="incomeAmount" placeholder="0.00" required>
+    </div>
+    <div class="input-group">
+        <label>Income Source</label>
+        <input type="text" id="incomeSource" placeholder="e.g. Salary, Freelance" required>
+    </div>
+    <div class="input-group">
+        <label>Date</label>
+        <input type="date" id="incomeDate" required>
+    </div>
+    <div class="input-group">
+        <label>Deposit to Bank (optional)</label>
+        <select id="incomeBank" class="deduction-source">
+            <option value="income">Income (No bank)</option>
+        </select>
+    </div>
+    <button type="submit" class="primary-btn">Save Income</button>
+</form>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>

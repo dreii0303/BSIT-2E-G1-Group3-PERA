@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Record Expense</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-expense">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item active" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+                <a class="menu-item" href="settings.html">⚙️ Settings</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Expense Recording</h1><p>Log a new transaction</p></div>
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>New Expense</h2>
+                    <p>Track your spending with quick reports and auto updates.</p>
+                </div>
+                <form id="expenseForm">
+    <div class="input-group">
+        <label>Amount (₱)</label>
+        <input type="number" id="expenseAmount" placeholder="0.00" required>
+    </div>
+    <div class="input-group">
+        <label>Category</label>
+        <input type="text" id="expenseCategory" placeholder="e.g. Food, Rent" required>
+    </div>
+    <div class="input-group">
+        <label>Description</label>
+        <input type="text" id="expenseDescription" placeholder="Optional description" >
+    </div>
+    <div class="input-group">
+        <label>Date</label>
+        <input type="date" id="expenseDate" required>
+    </div>
+    <div class="input-group">
+        <label>Deduct From</label>
+        <select id="expenseDeductionSource" class="deduction-source" required>
+            <option value="">Select deduction source</option>
+        </select>
+    </div>
+    <button type="submit" class="primary-btn">Save Expense</button>
+</form>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>
