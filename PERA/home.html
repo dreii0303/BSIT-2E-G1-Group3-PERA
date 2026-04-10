@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Dashboard</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">
+            <h2>💰 PERA</h2>
+            <p>Expense Manager</p>
+        </div>
+        <nav class="menu">
+            <a class="menu-item active" href="home.html">🏠 Home</a> 
+            <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+            <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+            <a class="menu-item" href="income-management.html">💰 Income Management</a>
+            <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+            <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+            <a class="menu-item" href="settings.html">⚙️ Settings</a>
+        </nav>
+        <div class="logout">
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                <div>
+                    <h1 id="welcomeTitle">Welcome, Name</h1>
+                    <p id="welcomeUser">Here's your financial dashboard</p>
+                </div>
+                <div class="topbar-controls" style="display:flex; align-items:center; gap:8px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="card card-balance">
+                <h3>💰 Total Balance</h3>
+                <p class="amount" id="dashTotalBalance">₱0.00</p>
+            </div>
+
+            <div class="card card-income">
+                <h3>📈 Total Income</h3>
+                <p class="amount" id="dashTotalIncome">₱0.00</p>
+            </div>
+
+            <div class="card card-expense">
+                <h3>💸 Total Expenses</h3>
+                <p class="amount" id="dashTotalExpense">₱0.00</p>
+                <div id="expenseCardWarning" style="display: none; margin-top: 12px; padding: 8px 12px; background: rgba(255, 193, 7, 0.2); border: 1px solid #ffc107; border-radius: 6px; color: #ffc107; font-size: 0.8rem; font-weight: 600; text-align: center; animation: pulse 2s ease-in-out infinite;">
+                    ⚠️ Over Limit
+                </div>
+            </div>
+
+<div class="card card-recurring">
+    <h3>🔁 Active Subscriptions</h3>
+    <p class="amount" id="dashActiveSubs">0</p>
+</div>
+            
+        </div>
+
+        <!-- Expense Limit Warning Section -->
+        <div id="expenseLimitWarning" style="display: none; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 87, 34, 0.2)); border: 2px solid #ffc107; border-radius: 12px; animation: pulse 2s ease-in-out infinite;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="font-size: 2.5rem; animation: bounce 1s ease-in-out infinite;">⚠️</div>
+                <div style="flex: 1;">
+                    <h3 style="margin: 0 0 8px 0; color: #ffc107; font-size: 1.2rem; font-weight: 600;">Monthly Expense Limit Exceeded!</h3>
+                    <p style="margin: 0 0 8px 0; color: #ffb74d; font-size: 0.95rem;">Your monthly expenses have surpassed your limit.</p>
+                    <div style="display: flex; gap: 12px; font-size: 0.9rem;">
+                        <div style="color: #ffb74d;">
+                            Limit: <span style="font-weight: 600; color: white;" id="warningLimitAmount">₱50,000</span>
+                        </div>
+                        <div style="color: #ff6b6b; margin-left: 12px;">
+                            Current: <span style="font-weight: 600; color: white;" id="warningCurrentAmount">₱0</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="window.location.href='settings.html'" style="background: rgba(255, 193, 7, 0.3); border: 1px solid #ffc107; color: #ffc107; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease;">Manage Settings</button>
+            </div>
+        </div>
+
+        <style>
+            @keyframes pulse {
+                0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.2); }
+                50% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+            }
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+        </style>
+
+        <div class="dashboard-widgets">
+            <div class="widget widget-time">
+                <h3>🕒 Current Time</h3>
+                <p id="currentTimeWidget">--:--:--</p>
+            </div>
+
+            <div class="widget widget-date">
+                <h3>📅 Today's Date</h3>
+                <p id="currentDateWidget">Loading...</p>
+            </div>
+
+            <div class="widget widget-goals">
+                <h3>🎯 Monthly Goal</h3>
+                <p id="monthlyGoalWidget">Set your savings goal</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-section quick-actions">
+                <h2>⚡ Quick Actions</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="window.location.href='expense-recording.html'">
+                        <span class="action-icon">💸</span>
+                        <span class="action-text">Add Expense</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='income-management.html'">
+                        <span class="action-icon">💰</span>
+                        <span class="action-text">Add Income</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='bank-management.html'">
+                        <span class="action-icon">🏦</span>
+                        <span class="action-text">Manage Banks</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='recurring-payments.html'">
+                        <span class="action-icon">🔁</span>
+                        <span class="action-text">Recurring Payments</span>
+                    </button>
+                    <button class="action-btn" onclick="window.location.href='financial-summary.html'">
+                        <span class="action-icon">📊</span>
+                        <span class="action-text">View Summary</span>
+                    </button>
+                    <button class="action-btn" onclick="showQuickTransactionModal()">
+                        <span class="action-icon">⚡</span>
+                        <span class="action-text">Quick Transaction</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-section recent-activity">
+                <h2>📝 Recent Activity</h2>
+                <div class="activity-list" id="recentActivityList">
+                    <div class="activity-item">
+                        <div class="activity-icon">💰</div>
+                        <div class="activity-content">
+                            <div class="activity-title">Welcome to PERA!</div>
+                            <div class="activity-desc">Start by adding your first transaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section financial-health">
+                <h2>❤️ Financial Health</h2>
+                <div class="health-score">
+                    <div class="score-circle">
+                        <span id="healthScore">85</span>
+                        <span class="score-label">Score</span>
+                    </div>
+                    <div class="health-indicators">
+                        <div class="indicator">
+                            <span class="indicator-label">Savings Rate</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="savingsProgress" style="width: 75%"></div>
+                            </div>
+                            <span class="indicator-value" id="savingsRate">75%</span>
+                        </div>
+                        <div class="indicator">
+                            <span class="indicator-label">Expense Control</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="expenseProgress" style="width: 80%"></div>
+                            </div>
+                            <span class="indicator-value" id="expenseControl">80%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section upcoming-payments">
+                <h2>⏰ Upcoming Payments</h2>
+                <div class="upcoming-list" id="upcomingPaymentsList">
+                    <div class="upcoming-item">
+                        <div class="upcoming-icon">🔄</div>
+                        <div class="upcoming-content">
+                            <div class="upcoming-title">No upcoming payments</div>
+                            <div class="upcoming-desc">Set up recurring payments to see them here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<script src="web.js"></script>
+<script>
+    // Check login status on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const setUserUI = (user) => {
+            const welcomeTitle = document.getElementById('welcomeTitle');
+            if (welcomeTitle) {
+                welcomeTitle.textContent = `Welcome, ${user.name || 'User'}`;
+            }
+            localStorage.setItem('activePeraUser', JSON.stringify({
+                name: user.name || '',
+                email: user.email || ''
+            }));
+        };
+
+        const activePeraUser = localStorage.getItem('activePeraUser');
+        if (activePeraUser) {
+            try {
+                const user = JSON.parse(activePeraUser);
+                if (user && user.email) {
+                    setUserUI(user);
+                    return;
+                }
+            } catch (e) {
+                console.warn('Invalid activePeraUser in localStorage', e);
+            }
+        }
+
+        fetch('check_login.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.logged_in) {
+                    window.location.href = 'login.html';
+                } else {
+                    setUserUI(data.user);
+                }
+            })
+            .catch(error => {
+                console.error('Login check failed:', error);
+                if (!activePeraUser) {
+                    window.location.href = 'login.html';
+                }
+            });
+
+        // ===== EXPENSE LIMIT WARNING =====
+        const updateExpenseLimitWarning = () => {
+            const expenseLimitStatus = window.getExpenseLimitStatus && window.getExpenseLimitStatus();
+            const warningDiv = document.getElementById('expenseLimitWarning');
+            const cardWarning = document.getElementById('expenseCardWarning');
+            
+            if (!warningDiv) return;
+            
+            if (expenseLimitStatus && expenseLimitStatus.enabled && expenseLimitStatus.exceeded) {
+                warningDiv.style.display = 'flex';
+                if (cardWarning) cardWarning.style.display = 'block';
+                document.getElementById('warningLimitAmount').textContent = window.formatCurrency ? window.formatCurrency(expenseLimitStatus.limit) : '₱' + expenseLimitStatus.limit.toFixed(2);
+                document.getElementById('warningCurrentAmount').textContent = window.formatCurrency ? window.formatCurrency(expenseLimitStatus.current) : '₱' + expenseLimitStatus.current.toFixed(2);
+            } else {
+                warningDiv.style.display = 'none';
+                if (cardWarning) cardWarning.style.display = 'none';
+            }
+        };
+        
+        // Check expense limit warning on page load
+        setTimeout(updateExpenseLimitWarning, 500);
+        
+        // Update warning every 30 seconds
+        setInterval(updateExpenseLimitWarning, 30000);
+        
+        // Listen for real-time expense limit changes from settings page
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'pera_expenseLimitEnabled' || e.key === 'pera_expenseLimitAmount' || e.key === 'pera_expenseLimitChanged') {
+                // Update warning immediately when settings change
+                updateExpenseLimitWarning();
+            }
+        });
+    });
+</script>
+</body>
+</html>
