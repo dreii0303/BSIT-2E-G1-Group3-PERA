@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Recurring Payments</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-recurring">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo">
+                <h2>💰 PERA</h2>
+                <p>Expense Assistant</p>
+            </div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item active" href="recurring-payments.html">🔁 Recurring Payments</a>
+                <a class="menu-item" href="settings.html">⚙️ Settings</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Recurring Payments</h1><p>Manage your automated monthly bills and subscriptions</p></div>
+
+            <div class="cards">
+                <div class="card card-recurring">
+                    <h3>Total Monthly Commitment</h3>
+                    <p class="amount" id="recurringTotal">₱0.00</p>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-bottom: 50px;">
+                <h2 style="color: white; margin-bottom: 25px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #f87171; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #0f2027; font-size: 1rem;">+</span>
+                    Add New Subscription
+                </h2>
+                <form id="recurringForm" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; align-items: flex-end;">
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Service Name</label>
+                        <input type="text" id="recurringDescription" placeholder="e.g. Netflix, Spotify" required>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Category</label>
+                        <input type="text" id="recurringCategory" placeholder="e.g. Entertainment, Utilities" required>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Amount per Cycle (₱)</label>
+                        <input type="number" id="recurringAmount" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Start Date</label>
+                        <input type="date" id="recStartDate" required>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>End Date (optional)</label>
+                        <input type="date" id="recEndDate" placeholder="Leave empty for no end">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Schedule</label>
+                        <select id="recurringFrequency" required>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly" selected>Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Deduct From</label>
+                        <select id="recurringDeductionSource" class="deduction-source" required>
+                            <option value="income">Income</option>
+                        </select>
+                    </div>
+                    <button type="submit" style="margin-top: 0; background: #fbbf24; color: #0f2027; font-weight: bold; height: 45px;">
+                        ADD SUBSCRIPTION
+                    </button>
+                </form>
+            </div>
+
+            <div class="recent">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 style="margin-bottom: 0;">Your Active Subscriptions</h2>
+             
+                </div>
+                
+                <div id="recurringList" class="cards" style="margin-bottom: 0;">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+</body>
+</html>

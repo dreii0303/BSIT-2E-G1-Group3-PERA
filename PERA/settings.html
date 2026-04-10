@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Settings</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="sidebar">
+        <div class="logo">
+            <h2>💰 PERA</h2>
+            <p>Expense Manager</p>
+        </div>
+        <nav class="menu">
+            <a class="menu-item" href="home.html">🏠 Home</a> 
+            <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+            <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+            <a class="menu-item" href="income-management.html">💰 Income Management</a>
+            <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+            <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+            <a class="menu-item active" href="settings.html">⚙️ Settings</a>
+        </nav>
+        <div class="logout">
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="topbar">
+            <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                <div>
+                    <h1>Settings</h1>
+                    <p>Manage your account and data preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 30px; max-width: 900px;">
+            <!-- Account Settings Section -->
+            <div class="form-container" style="margin-bottom: 30px;">
+                <h2 style="margin-bottom: 30px; display: flex; align-items: center; gap: 12px; color: white; font-size: 1.5rem;">
+                    <span style="background: rgba(77, 184, 255, 0.3); padding: 10px 15px; border-radius: 8px; font-size: 1.3rem;">👤</span>
+                    Account Settings
+                </h2>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <label style="display: block; margin-bottom: 8px; color: #89cff0; font-weight: 500; font-size: 0.95rem;">Username</label>
+                        <input type="text" id="usernameInput" placeholder="Your username" style="width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(0,0,0,0.3); color: white; font-size: 1rem;" readonly>
+                        <p style="margin-top: 8px; color: #999; font-size: 0.85rem;">Your account username (read-only)</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <label style="display: block; margin-bottom: 8px; color: #89cff0; font-weight: 500; font-size: 0.95rem;">Account Status</label>
+                        <div style="padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; color: #4ade80; display: flex; align-items: center; gap: 10px;">
+                            <span style="width: 10px; height: 10px; background: #4ade80; border-radius: 50%; display: inline-block;"></span>
+                            Active
+                        </div>
+                        <p style="margin-top: 8px; color: #999; font-size: 0.85rem;">Your account is active and in good standing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display Preferences Section -->
+            <div class="form-container" style="margin-bottom: 30px;">
+                <h2 style="margin-bottom: 30px; display: flex; align-items: center; gap: 12px; color: white; font-size: 1.5rem;">
+                    <span style="background: rgba(120, 219, 255, 0.3); padding: 10px 15px; border-radius: 8px; font-size: 1.3rem;">🎨</span>
+                    Display Preferences
+                </h2>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <label style="display: block; margin-bottom: 8px; color: #89cff0; font-weight: 500; font-size: 0.95rem;">Currency</label>
+                        <select id="currencySelect" style="width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(0,0,0,0.3); color: white; font-size: 1rem;">
+                            <option value="PHP">Philippine Peso (₱)</option>
+                            <option value="USD">US Dollar ($)</option>
+                            <option value="EUR">Euro (€)</option>
+                            <option value="GBP">British Pound (£)</option>
+                        </select>
+                        <p style="margin-top: 8px; color: #999; font-size: 0.85rem;">Choose your preferred currency for display</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <label style="display: block; margin-bottom: 8px; color: #89cff0; font-weight: 500; font-size: 0.95rem;">Dark Mode</label>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <input type="checkbox" id="darkModeToggle" style="width: 20px; height: 20px; cursor: pointer;">
+                            <label for="darkModeToggle" style="color: white; cursor: pointer; margin: 0;" id="darkModeLabel">Enable Dark Mode</label>
+                        </div>
+                        <p style="margin-top: 8px; color: #999; font-size: 0.85rem;">Switch to dark mode for easier viewing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Limit Section -->
+            <div class="form-container" style="margin-bottom: 30px;">
+                <h2 style="margin-bottom: 30px; display: flex; align-items: center; gap: 12px; color: white; font-size: 1.5rem;">
+                    <span style="background: rgba(255, 193, 7, 0.3); padding: 10px 15px; border-radius: 8px; font-size: 1.3rem;">⚠️</span>
+                    Expense Limit
+                </h2>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <label style="display: block; margin-bottom: 8px; color: #89cff0; font-weight: 500; font-size: 0.95rem;">Enable Monthly Expense Limit</label>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <input type="checkbox" id="expenseLimitToggle" style="width: 20px; height: 20px; cursor: pointer;">
+                            <label for="expenseLimitToggle" style="color: white; cursor: pointer; margin: 0;" id="expenseLimitLabel">Disabled</label>
+                        </div>
+                        <p style="margin-top: 8px; color: #999; font-size: 0.85rem;">Turn on to set a monthly limit on your expenses</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <label style="display: block; margin-bottom: 8px; color: #89cff0; font-weight: 500; font-size: 0.95rem;">Monthly Expense Limit Amount</label>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <span style="color: white; font-size: 1.1rem; font-weight: 500;">₱</span>
+                            <input type="number" id="expenseLimitAmount" placeholder="Enter amount (e.g., 50000)" style="flex: 1; padding: 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(0,0,0,0.3); color: white; font-size: 1rem;" min="0" step="100">
+                        </div>
+                        <p style="margin-top: 8px; color: #999; font-size: 0.85rem;">Default: ₱50,000 per month</p>
+                    </div>
+
+                    <div style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 16px; border-radius: 12px;">
+                        <p style="margin: 0; color: #ffc107; font-size: 0.9rem;">
+                            <span style="font-weight: 600;">💡 Tip:</span> You'll receive a warning on your dashboard and financial summary when you exceed this limit in a month.
+                        </p>
+                    </div>
+
+                    <button id="saveLimitBtn" style="background-color: #4db8ff; border: 1px solid #4db8ff; color: white; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease; width: fit-content;">Save Settings</button>
+                </div>
+            </div>
+
+            <!-- Data Management Section -->
+            <div class="form-container">
+                <h2 style="margin-bottom: 30px; display: flex; align-items: center; gap: 12px; color: white; font-size: 1.5rem;">
+                    <span style="background: rgba(255, 119, 198, 0.3); padding: 10px 15px; border-radius: 8px; font-size: 1.3rem;">💾</span>
+                    Data Management
+                </h2>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <h3 style="margin: 0 0 12px 0; color: #89cff0; font-size: 1rem;">Clear All Data</h3>
+                        <p style="margin: 0 0 15px 0; color: #ccc; font-size: 0.9rem;">This will permanently delete ALL your data including:</p>
+                        <ul style="margin: 0 0 15px 20px; color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                            <li>Bank accounts</li>
+                            <li>Income records</li>
+                            <li>Transactions and history</li>
+                            <li>Recurring payments/subscriptions</li>
+                        </ul>
+                        <p style="margin: 0 0 15px 0; color: #ff6b6b; font-weight: 500; font-size: 0.9rem;">⚠️ This action cannot be undone.</p>
+                        <button id="clearDataBtn" style="background-color: #dc3545; border: 1px solid #dc3545; color: white; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;">Delete All Data</button>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                        <h3 style="margin: 0 0 12px 0; color: #89cff0; font-size: 1rem;">Export Data</h3>
+                        <p style="margin: 0 0 15px 0; color: #ccc; font-size: 0.9rem;">Download a backup of all your transaction data in CSV format</p>
+                        <button id="exportDataBtn" style="background-color: #4db8ff; border: 1px solid #4db8ff; color: white; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;">Export Transactions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="web.js"></script>
+<script>
+    // Load user information on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = JSON.parse(localStorage.getItem('activePeraUser') || '{}');
+        
+        // Display username
+        if (user.email) {
+            document.getElementById('usernameInput').value = user.email.split('@')[0] || user.email;
+        }
+        
+        // Load preferences from localStorage
+        const currency = localStorage.getItem('pera_currency') || 'PHP';
+        const darkMode = localStorage.getItem('pera_darkMode') === 'true';
+        
+        document.getElementById('currencySelect').value = currency;
+        document.getElementById('darkModeToggle').checked = darkMode;
+        updateDarkModeLabel(darkMode);
+        
+        // Load expense limit settings
+        const expenseLimitEnabled = localStorage.getItem('pera_expenseLimitEnabled') === 'true';
+        const expenseLimitAmount = localStorage.getItem('pera_expenseLimitAmount') || '50000';
+        
+        document.getElementById('expenseLimitToggle').checked = expenseLimitEnabled;
+        document.getElementById('expenseLimitAmount').value = expenseLimitAmount;
+        updateExpenseLimitLabel(expenseLimitEnabled);
+        updateExpenseLimitInputState();
+        
+        // Add event listeners for preference changes
+        document.getElementById('currencySelect').addEventListener('change', function() {
+            localStorage.setItem('pera_currency', this.value);
+            showNotification('Currency preference updated', 'success');
+            // Reload to apply currency changes throughout the app
+            setTimeout(() => window.location.reload(), 500);
+        });
+        
+        document.getElementById('darkModeToggle').addEventListener('change', function() {
+            localStorage.setItem('pera_darkMode', this.checked);
+            updateDarkModeLabel(this.checked);
+            
+            // Apply with smooth transition
+            const body = document.body;
+            body.style.transition = 'background 0.4s ease, color 0.4s ease';
+            applyDarkMode(this.checked);
+            
+            showNotification(`Dark mode ${this.checked ? 'enabled' : 'disabled'}`, 'success');
+        });
+        
+        // Handle expense limit toggle
+        document.getElementById('expenseLimitToggle').addEventListener('change', function() {
+            updateExpenseLimitLabel(this.checked);
+            updateExpenseLimitInputState();
+            // Immediately trigger warning update on other pages
+            broadcastLimitChange();
+        });
+        
+        // Handle save expense limit button
+        document.getElementById('saveLimitBtn').addEventListener('click', function() {
+            const isEnabled = document.getElementById('expenseLimitToggle').checked;
+            const amount = parseFloat(document.getElementById('expenseLimitAmount').value);
+            
+            if (isEnabled && (isNaN(amount) || amount <= 0)) {
+                showNotification('Please enter a valid expense limit amount', 'error');
+                return;
+            }
+            
+            localStorage.setItem('pera_expenseLimitEnabled', isEnabled);
+            localStorage.setItem('pera_expenseLimitAmount', amount || '50000');
+            
+            // Show message dialogue
+            const statusText = isEnabled ? `✓ Saved!\n\nExpense Limit: ${window.formatCurrency ? window.formatCurrency(amount) : '₱' + parseFloat(amount).toFixed(2)}\n\nYou'll receive a warning when you exceed this limit.` : '✓ Saved!\n\nExpense limit is currently disabled.';
+            alert(statusText);
+            
+            // Trigger warning update on other pages
+            broadcastLimitChange();
+        });
+        
+        // Handle export button
+        const exportBtn = document.getElementById('exportDataBtn');
+        if (exportBtn && typeof exportTransactionsToCSV === 'function') {
+            exportBtn.addEventListener('click', exportTransactionsToCSV);
+        }
+        
+        // Add hover effects to buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    });
+    
+    function updateDarkModeLabel(isDark) {
+        const label = document.getElementById('darkModeLabel');
+        label.textContent = isDark ? 'Dark Mode: ON' : 'Enable Dark Mode';
+    }
+    
+    function updateExpenseLimitLabel(isEnabled) {
+        const label = document.getElementById('expenseLimitLabel');
+        label.textContent = isEnabled ? 'Enabled' : 'Disabled';
+    }
+    
+    function updateExpenseLimitInputState() {
+        const isEnabled = document.getElementById('expenseLimitToggle').checked;
+        const amountInput = document.getElementById('expenseLimitAmount');
+        amountInput.disabled = !isEnabled;
+        amountInput.style.opacity = isEnabled ? '1' : '0.5';
+    }
+    
+    function broadcastLimitChange() {
+        // Broadcast storage change event to update other pages/tabs in real-time
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'pera_expenseLimitChanged',
+            newValue: Date.now()
+        }));
+    }
+    
+    function applyDarkMode(isDark) {
+        const body = document.body;
+        if (isDark) {
+            body.classList.add('dark-mode-enabled');
+            body.classList.remove('dark-mode-disabled');
+        } else {
+            body.classList.remove('dark-mode-enabled');
+            body.classList.add('dark-mode-disabled');
+        }
+    }
+</script>
+</body>
+</html>
