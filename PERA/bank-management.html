@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Bank Management</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-bank">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo"><h2>💰 PERA</h2><p>Expense Manager</p></div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item active" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>
+                <a class="menu-item" href="settings.html">⚙️ Settings</a>
+            </nav>
+            <div class="logout"><button onclick="logout()">Logout</button></div>
+        </div>
+
+        <div class="main">
+            <div class="topbar"><h1>Bank Management</h1><p>Manage your bank accounts and digital wallets</p></div>
+            
+            <div id="bankList" class="cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 20px 0;">
+                <div class="card" onclick="openBankModal()" style="border: 2px dashed #4db8ff; display:flex; align-items:center; justify-content:center; cursor:pointer; min-height: 150px;">
+                    <h3 style="color: #4db8ff;">+ Add Account</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bankModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#1e293b; padding:30px; border-radius:12px; width:90%; max-width:400px; color:white;">
+            <h2>Add New Account</h2>
+            <form id="bankForm">
+                <label>Bank Name (e.g., GCash, BDO)</label>
+                <input type="text" id="bankName" required style="width:100%; padding:10px; margin:10px 0; border-radius:5px; border:none;">
+                
+                <label>Initial Balance (₱)</label>
+                <input type="number" id="bankBalance" required style="width:100%; padding:10px; margin:10px 0; border-radius:5px; border:none;">
+                
+                <div style="display:flex; gap:10px; margin-top:20px;">
+                    <button type="submit" style="background:#4ade80; flex:1; padding:10px; border:none; border-radius:5px; cursor:pointer;">Save</button>
+                    <button type="button" onclick="closeBankModal()" style="background:#dc2626; flex:1; padding:10px; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="web.js"></script>
+    <script>
+        // Internal page logic to handle the modal
+        function openBankModal() { document.getElementById('bankModal').style.display = 'flex'; }
+        function closeBankModal() { document.getElementById('bankModal').style.display = 'none'; }
+    </script>
+</body>
+</html>
