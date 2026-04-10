@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERA - Financial Summary</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body class="theme-summary">
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo">
+                <h2>💰 PERA</h2>
+                <p>Expense Manager</p>
+            </div>
+            <nav class="menu">
+                <a class="menu-item" href="home.html">🏠 Home</a>
+                <a class="menu-item active" href="financial-summary.html">📊 Financial Summary</a>
+                <a class="menu-item" href="expense-recording.html">💸 Expense Recording</a>
+                <a class="menu-item" href="income-management.html">💰 Income Management</a>
+                <a class="menu-item" href="bank-management.html">🏦 Bank Management</a>
+                <a class="menu-item" href="recurring-payments.html">🔁 Recurring Payments</a>            <a class="menu-item" href="settings.html">⚙️ Settings</a>            </nav>
+            <div class="logout">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                    <div>
+                        <h1>Financial Summary</h1>
+                        <p>Your transaction history and subscription deductions at a glance</p>
+                    </div>
+                    <div class="topbar-controls" style="display:flex; align-items:center; gap:8px;">
+                        <button id="exportBtn" class="secondary-btn">Export Transactions</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expense Limit Warning Section -->
+            <div id="expenseLimitWarningFS" style="display: none; margin-bottom: 30px; padding: 20px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 87, 34, 0.2)); border: 2px solid #ffc107; border-radius: 12px; animation: pulse 2s ease-in-out infinite;">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 2.5rem; animation: bounce 1s ease-in-out infinite;">⚠️</div>
+                    <div style="flex: 1;">
+                        <h3 style="margin: 0 0 8px 0; color: #ffc107; font-size: 1.2rem; font-weight: 600;">Monthly Expense Limit Exceeded!</h3>
+                        <p style="margin: 0 0 8px 0; color: #ffb74d; font-size: 0.95rem;">You have exceeded your monthly expense limit. Review your spending and adjust your budget accordingly.</p>
+                        <div style="display: grid; grid-template-columns: auto auto auto; gap: 24px; font-size: 0.9rem; margin-top: 12px;">
+                            <div>
+                                <span style="color: #ffb74d;">Monthly Limit:</span><br/>
+                                <span style="font-weight: 600; color: white; font-size: 1.1rem;" id="summaryLimitAmount">₱50,000</span>
+                            </div>
+                            <div>
+                                <span style="color: #ffb74d;">Current Expenses:</span><br/>
+                                <span style="font-weight: 600; color: #ff6b6b; font-size: 1.1rem;" id="summaryCurrentAmount">₱0</span>
+                            </div>
+                            <div>
+                                <span style="color: #ffb74d;">Over Limit By:</span><br/>
+                                <span style="font-weight: 600; color: #ff6b6b; font-size: 1.1rem;" id="summaryOverAmount">₱0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="window.location.href='settings.html'" style="background: rgba(255, 193, 7, 0.3); border: 1px solid #ffc107; color: #ffc107; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; white-space: nowrap;">Adjust Limit</button>
+                </div>
+            </div>
+
+            <style>
+                @keyframes pulse {
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.2); }
+                    50% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+                }
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+            </style>
+
+            <div class="recent">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>Recent Transactions</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTableBody">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="subscriptions">
+                <h2>Subscription Deductions History</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Subscription</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="subscriptionTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="web.js"></script>
+    <script>
+        // ===== EXPENSE LIMIT WARNING FOR SUMMARY PAGE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateExpenseLimitWarnings = () => {
+                const expenseLimitStatus = window.getExpenseLimitStatus && window.getExpenseLimitStatus();
+                const warningDiv = document.getElementById('expenseLimitWarningFS');
+                
+                if (!warningDiv) return;
+                
+                if (expenseLimitStatus && expenseLimitStatus.enabled && expenseLimitStatus.exceeded) {
+                    warningDiv.style.display = 'flex';
+                    const overAmount = expenseLimitStatus.current - expenseLimitStatus.limit;
+                    document.getElementById('summaryLimitAmount').textContent = window.formatCurrency ? window.formatCurrency(expenseLimitStatus.limit) : '₱' + expenseLimitStatus.limit.toFixed(2);
+                    document.getElementById('summaryCurrentAmount').textContent = window.formatCurrency ? window.formatCurrency(expenseLimitStatus.current) : '₱' + expenseLimitStatus.current.toFixed(2);
+                    document.getElementById('summaryOverAmount').textContent = window.formatCurrency ? window.formatCurrency(overAmount) : '₱' + overAmount.toFixed(2);
+                } else {
+                    warningDiv.style.display = 'none';
+                }
+            };
+            
+            // Check expense limit warning on page load
+            setTimeout(updateExpenseLimitWarnings, 500);
+            
+            // Update warning every 30 seconds
+            setInterval(updateExpenseLimitWarnings, 30000);
+            
+            // Listen for real-time expense limit changes from settings page
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'pera_expenseLimitEnabled' || e.key === 'pera_expenseLimitAmount' || e.key === 'pera_expenseLimitChanged') {
+                    // Update warning immediately when settings change
+                    updateExpenseLimitWarnings();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
